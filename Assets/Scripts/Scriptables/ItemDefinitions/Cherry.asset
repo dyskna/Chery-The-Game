@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Cherry
   _isStackable: 1
-  _inGameSprite: {fileID: 318697773, guid: 6efa3c0fa0e0bc84b8e729d6042c63c0, type: 3}
-  _uiSprite: {fileID: 318697773, guid: 6efa3c0fa0e0bc84b8e729d6042c63c0, type: 3}
+  _inGameSprite: {fileID: 369929142, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
+  _uiSprite: {fileID: -8284200716413144896, guid: 42c7000148c033948bfa66a096bbb095, type: 3}

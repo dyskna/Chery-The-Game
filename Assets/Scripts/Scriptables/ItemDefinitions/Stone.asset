@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Stone
   _isStackable: 0
-  _inGameSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  _uiSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _inGameSprite: {fileID: -220404348, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
+  _uiSprite: {fileID: -686281413025583504, guid: 42c7000148c033948bfa66a096bbb095, type: 3}
