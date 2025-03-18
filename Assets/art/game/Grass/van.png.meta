@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: a5b23903bf4ded949ab31dca6470eefe
+guid: b190704f45fa3f54f8101f0c7a8a8605
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2385573656168922973
-    second: anim_harvesting_cherry_0
+      213: 6480938839638750260
+    second: van_0
   - first:
-      213: 4640782996922091079
-    second: anim_harvesting_cherry_1
+      213: 3243338895404281992
+    second: van_1
   - first:
-      213: 38792647411440623
-    second: anim_harvesting_cherry_2
+      213: 7378069325737697851
+    second: van_2
+  - first:
+      213: -952509691286560368
+    second: van_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,89 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: anim_harvesting_cherry_0
+      name: van_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.4741056, y: 0.22693042}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a08586266db4eed0800000000000000
-      internalID: -2385573656168922973
+      spriteID: 43433b3898be0f950800000000000000
+      internalID: 6480938839638750260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: anim_harvesting_cherry_1
+      name: van_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.47881365, y: 0.22457638}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 746c63b3c8f576040800000000000000
-      internalID: 4640782996922091079
+      spriteID: 880b7ca9a87a20d20800000000000000
+      internalID: 3243338895404281992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: anim_harvesting_cherry_2
+      name: van_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.48116827, y: 0.22928448}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: feb1bd015b1d98000800000000000000
-      internalID: 38792647411440623
+      spriteID: b322dc806fa246660800000000000000
+      internalID: 7378069325737697851
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: anim_harvesting_cherry_3
+      name: van_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.48352265, y: 0.22693042}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5a3558aa9f4bbb24fb2a1fc8124b7d00
-      internalID: 1060044410
+      spriteID: 0916fbd7b7108c2f0800000000000000
+      internalID: -952509691286560368
       vertices: []
       indices: 
       edges: []
@@ -197,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1942faecf066f9540bfa19700427914d
+    spriteID: e25e370331a2011468a125c739064bf0
     internalID: 0
     vertices: []
     indices: 
@@ -207,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      anim_harvesting_cherry_0: -2385573656168922973
-      anim_harvesting_cherry_1: 4640782996922091079
-      anim_harvesting_cherry_2: 38792647411440623
-      anim_harvesting_cherry_3: 1060044410
+      van_0: 6480938839638750260
+      van_1: 3243338895404281992
+      van_2: 7378069325737697851
+      van_3: -952509691286560368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

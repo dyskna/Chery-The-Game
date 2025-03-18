@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a5b23903bf4ded949ab31dca6470eefe
+guid: b6f128d81d1d604458d5220ef21bb266
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2385573656168922973
-    second: anim_harvesting_cherry_0
-  - first:
-      213: 4640782996922091079
-    second: anim_harvesting_cherry_1
-  - first:
-      213: 38792647411440623
-    second: anim_harvesting_cherry_2
+      213: 1939645058321225172
+    second: upper_grass_updated_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,89 +100,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: anim_harvesting_cherry_0
+      name: upper_grass_updated_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.4741056, y: 0.22693042}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3a08586266db4eed0800000000000000
-      internalID: -2385573656168922973
+      spriteID: 4d5149367e00bea10800000000000000
+      internalID: 1939645058321225172
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: anim_harvesting_cherry_1
+      name: upper_grass_updated_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.47881365, y: 0.22457638}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 746c63b3c8f576040800000000000000
-      internalID: 4640782996922091079
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: anim_harvesting_cherry_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.48116827, y: 0.22928448}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: feb1bd015b1d98000800000000000000
-      internalID: 38792647411440623
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: anim_harvesting_cherry_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.48352265, y: 0.22693042}
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a3558aa9f4bbb24fb2a1fc8124b7d00
-      internalID: 1060044410
+      spriteID: 152667b23a9d89c40ac3a803ec8df0c0
+      internalID: -318142208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper_grass_updated_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5fa20a84c73c2b4d91701ce56e7c7b4
+      internalID: 1118147330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper_grass_updated_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84f4acd491c89c94e86c122be3fe9b8e
+      internalID: -1550454295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper_grass_updated_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3967c39ea0a46614abf223fc3d120efe
+      internalID: 1720859092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upper_grass_updated_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d69a2b160fb595649ac0a3a807bcc5e9
+      internalID: 1737226092
       vertices: []
       indices: 
       edges: []
@@ -197,7 +235,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1942faecf066f9540bfa19700427914d
+    spriteID: 804cfcb731850f54aa6f7900e38baa61
     internalID: 0
     vertices: []
     indices: 
@@ -207,10 +245,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      anim_harvesting_cherry_0: -2385573656168922973
-      anim_harvesting_cherry_1: 4640782996922091079
-      anim_harvesting_cherry_2: 38792647411440623
-      anim_harvesting_cherry_3: 1060044410
+      upper_grass_updated_0: 1939645058321225172
+      upper_grass_updated_1: -318142208
+      upper_grass_updated_2: 1118147330
+      upper_grass_updated_3: -1550454295
+      upper_grass_updated_4: 1720859092
+      upper_grass_updated_5: 1737226092
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
