@@ -2,10 +2,9 @@
 
 === main ===
 Hau Hau!
-
- * [Pogłaszcz Łatka]
-    -Hau!
-    -> DONE
- * [Aportuj!]
-    -Amimacja biegnięcia
-    -> DONE
+    * [Pogłaszcz Łatka']
+        Hau! Hau!
+        -> DONE
+    * [Aportuj!]
+        animacja
+        -> END

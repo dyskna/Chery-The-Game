@@ -20,16 +20,10 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying {get; private set;}
     private bool wybor = false ;
 
-
-
-
-
   private static DialogueManager instance;
 
     private void Awake()
     {
-
-    
         if( instance != null)
          {
         
@@ -43,7 +37,6 @@ public class DialogueManager : MonoBehaviour
     {
         return instance;
     }
-
 
     private void Start()
     {
@@ -72,9 +65,6 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-   
-
-    
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         currentStory = new Story(inkJSON.text);
@@ -94,7 +84,6 @@ public class DialogueManager : MonoBehaviour
         if(currentStory.canContinue )
         {
             dialogueText.text = currentStory.Continue();
-            
             DisplayChoices();
         }
         else
@@ -129,18 +118,13 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
-        
-       
     }
-
-    
 
     public void MakeChoice(int choiceIndex)
     {
-        
+        Debug.Log(choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
-        if(choiceIndex == 1)
+        if(choiceIndex == 3)
         {
             ContinueStory();
             Invoke("Quit",5.0f);
