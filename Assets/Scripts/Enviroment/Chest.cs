@@ -29,7 +29,7 @@ namespace InventorySystem
         if (itemSpawner != null)
         {
             for(int i = 0 ; i<amountOfFruit; i++ )
-                {itemSpawner.SpawnFruit(position, 1);}
+                {itemSpawner.SpawnFruit(position, 1, null);}
         }
     }
     public bool CanInteract()

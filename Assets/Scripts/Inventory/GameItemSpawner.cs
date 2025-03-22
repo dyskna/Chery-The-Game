@@ -22,11 +22,12 @@ namespace InventorySystem
             
         }
 
-        public void SpawnFruit(Vector2 position, int maxAmount)
+        public void SpawnFruit(Vector2 position, int maxAmount, GameObject _itemBasePrefabCustom)
         {
-            if (_itemBasePrefab == null) return;
-            var itemDef = _itemBasePrefab.GetComponent<GameItem>();
-            var item = PrefabUtility.InstantiatePrefab(_itemBasePrefab) as GameObject;
+            if (_itemBasePrefabCustom == null) _itemBasePrefabCustom = _itemBasePrefab;
+            if (_itemBasePrefabCustom == null) return;
+            var itemDef = _itemBasePrefabCustom.GetComponent<GameItem>();
+            var item = PrefabUtility.InstantiatePrefab(_itemBasePrefabCustom) as GameObject;
             item.transform.position = position;
             var gameItemScript = item.GetComponent<GameItem>();
             gameItemScript.SetStack(new ItemStack(itemDef.Stack.Item, maxAmount)); 

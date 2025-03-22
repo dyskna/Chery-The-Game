@@ -4,33 +4,47 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour, IInteractable
 {
+    [SerializeField] private bool multipleInteract = false;
+
     [Header("Visual Cue")]
-    [SerializeField] private GameObject visualCue;
+     [SerializeField] private GameObject visualCue;
 
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
     private bool _isRead;
 
-    //private bool playerInRange;
-
     private void Awake()
     {   
-        //playerInRange = false;
         visualCue.SetActive(true);
     }
 
 
     public void Interact()
     {
-        _isRead = true;
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+        if(!multipleInteract)
+        {
+            _isRead = true;
+        }
+
         visualCue.SetActive(false);
     }
 
     public bool CanInteract()
     {
-        return ! _isRead;
+        if (DialogueManager.GetInstance().GetDialogueIsPlaying()) 
+        {
+            return false;
+        }
+
+        if (multipleInteract && _isRead) 
+        {
+            _isRead = false;
+            visualCue.SetActive(true);
+        }
+
+        return !_isRead;
     }
     
 }

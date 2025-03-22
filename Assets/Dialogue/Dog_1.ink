@@ -2,9 +2,8 @@
 
 === main ===
 Hau Hau!
-    * [Pogłaszcz Łatka']
+    * [Pogłaszcz Łatka'] 
         Hau! Hau!
         -> DONE
-    * [Aportuj!]
-        animacja
+    * [Aportuj!] #Dog:Fetch
         -> END

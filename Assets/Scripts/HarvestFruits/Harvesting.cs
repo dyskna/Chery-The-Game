@@ -19,11 +19,12 @@ namespace InventorySystem
     public bool _isHarvested;
     public GameObject player;
     //text
-    [SerializeField] private string[] _messages;
     [SerializeField] private GameObject _messagePrefab;
     [SerializeField] private GameObject _itemBasePrefab;
     [SerializeField] private int minFruit;
     [SerializeField] private int maxFruit;
+
+    [SerializeField] private string[] _messages;
     private Vector2 position;
     public PlayerMovement playerMovement;
 
@@ -58,7 +59,7 @@ namespace InventorySystem
         if (itemSpawner != null)
         {
             for(int i = 0 ; i<amountOfFruit; i++ )
-                {itemSpawner.SpawnFruit(position, 1);}
+                {itemSpawner.SpawnFruit(position, 1, null);}
         }
     
         
