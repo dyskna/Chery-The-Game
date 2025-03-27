@@ -2,7 +2,7 @@
 
 === main ===
 Hau Hau!
-    * [Pogłaszcz Łatka'] 
+    * [Pogłaszcz Łatka'] #Dog:Pet
         Hau! Hau!
         -> DONE
     * [Aportuj!] #Dog:Fetch

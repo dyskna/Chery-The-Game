@@ -1076,7 +1076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441925843567502200, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.468846
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4441925843567502200, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1110,6 +1110,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1480917699468073914, guid: 8b763ff3cba21424cab7c52cc9f5d249, type: 3}
+    - target: {fileID: 8418493483890716409, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418493483890716409, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.069
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418493483890716409, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1120,6 +1132,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 612800631367416360, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1683695395}
+    - targetCorrespondingSourceObject: {fileID: 612800631367416360, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1683695400}
   m_SourcePrefab: {fileID: 100100000, guid: f0c0e0532647c6e448d691eaf02b1ebc, type: 3}
 --- !u!1 &249555569
 GameObject:
@@ -5005,7 +5020,7 @@ Transform:
   m_GameObject: {fileID: 598409694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.033202052, y: -0.00024467707, z: 0}
+  m_LocalPosition: {x: 0.03244281, y: -0.00023907423, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7880,7 +7895,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1683695385}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f7eebb7238713dd4f9ec4cc73d296541, type: 2}
   m_CullingMode: 0
@@ -7906,15 +7921,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6ad3894ecc35842bbbd1b485427f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pettingsNeededToFollow: 5
+  playerPosition: {fileID: 1875099406}
+  pettingsNeededToFollow: 1
   fetchCooldown: 15
-  moveSpeed: 3
+  moveSpeed: 1
   _itemBasePrefab: {fileID: 5414401474317415162, guid: 933cf3a445e3a9541971a0d80d961347, type: 3}
   _messages:
   - "Pies nie mo\u017Ce jeszcze przynie\u015B\u0107 monety. Potrzebuje odpoczynku."
+  - "G\u0142ask"
   _messagePrefab: {fileID: 6389009373468687386, guid: 00bfe11cde70f054995363d6eb1e4eb3, type: 3}
   minFruit: 2
   maxFruit: 5
+  offsetDog: {x: 2, y: 0, z: 0}
+--- !u!50 &1683695400
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683695385}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1692029849
 PrefabInstance:
   m_ObjectHideFlags: 0
