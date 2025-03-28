@@ -30,17 +30,21 @@ public class DogAI : MonoBehaviour, INPC
     private bool isFetchAnimating = false;
     private Vector2 previousPosition;
     private const float stopThreshold = 0.0001f;
+    NPCWandering npcWandering;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        npcWandering = GetComponent<NPCWandering>();
+        npcWandering.SetWandering();
     }
 
     void FixedUpdate()
 {
     if (playerPosition != null && isFollowing)
     {
+        npcWandering.SetFollowing();
         Vector2 currentPosition = rb.position;
         
         // Oblicz kierunek od psa do gracza
@@ -87,20 +91,25 @@ public class DogAI : MonoBehaviour, INPC
 
     private void Pet()
     {
-        animator.SetTrigger("Pet");
+        npcWandering.SetFollowing();
+        animator.SetBool("Pet", true);
         pettingCount++;
-        var message = _messages[1];
+        var message = _messages[1]; //index 1 to message associated with pet
         var msgObject = Instantiate(_messagePrefab, transform.position, Quaternion.identity);
         msgObject.GetComponentInChildren<TMP_Text>().SetText(message);
+        
+    }
+    
+    private void EndOfPettingAnim()
+    {
+        animator.SetBool("Pet", false);
+        npcWandering.SetWandering();
         if(pettingCount == pettingsNeededToFollow)
         {
-            
             isFollowing = true;
-            //index 1 to pet
-            
         }
-    }
         
+    }
 
     private void FetchCoin()
     {
