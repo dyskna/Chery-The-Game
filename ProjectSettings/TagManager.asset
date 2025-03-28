@@ -53,6 +53,9 @@ TagManager:
   - name: 2foreground
     uniqueID: 2241639751
     locked: 0
+  - name: Npc
+    uniqueID: 2937780777
+    locked: 0
   - name: items
     uniqueID: 1283581511
     locked: 0
