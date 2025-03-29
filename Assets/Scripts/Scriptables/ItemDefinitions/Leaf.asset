@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Leaf
   _isStackable: 1
+  _maxStackSize: 64
   _inGameSprite: {fileID: 988886797, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
   _uiSprite: {fileID: 243074353276936635, guid: 42c7000148c033948bfa66a096bbb095, type: 3}

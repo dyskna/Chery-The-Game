@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace InventorySystem
 {
@@ -30,7 +30,8 @@ namespace InventorySystem
 
         private void Awake()
         {
-            if (_size > 0) _slots[0].Active = true;
+            if (_size > 0)
+                _slots[0].Active = true;
         }
 
         private void OnValidate()
@@ -40,9 +41,12 @@ namespace InventorySystem
 
         private void AdjustSize()
         {
-            if (_slots == null) _slots = new List<InventorySlot>();
-            if (_slots.Count > _size) _slots.RemoveRange(_size, _slots.Count - _size);
-                if (_slots.Count < _size) _slots.AddRange(new InventorySlot[_size - _slots.Count]);
+            if (_slots == null)
+                _slots = new List<InventorySlot>();
+            if (_slots.Count > _size)
+                _slots.RemoveRange(_size, _slots.Count - _size);
+            if (_slots.Count < _size)
+                _slots.AddRange(new InventorySlot[_size - _slots.Count]);
         }
 
         public bool IsFull()
@@ -58,33 +62,34 @@ namespace InventorySystem
 
         private InventorySlot FindSlot(ItemDefinition item, bool onlyStackable = false)
         {
-            return _slots.FirstOrDefault(_slots => _slots.Item == item && item.IsStackable || !onlyStackable);
+            return _slots.FirstOrDefault(_slots =>
+                _slots.Item == item && item.IsStackable || !onlyStackable
+            );
         }
 
         public bool HasItem(ItemStack itemStack, bool checkNumberOfItems = false)
         {
             var itemSlot = FindSlot(itemStack.Item);
-            if (itemSlot == null) return false;
-            if(checkNumberOfItems)
+            if (itemSlot == null)
+                return false;
+            if (checkNumberOfItems)
             {
                 if (itemStack.Item.IsStackable)
                 {
                     return itemSlot.NumberOfItems >= itemStack.NumberOfItems;
                 }
-                
+
                 return _slots.Count(slot => slot.Item == itemStack.Item) >= itemStack.NumberOfItems;
-                
             }
             return true;
-
         }
 
         public ItemStack RemoveItem(int atIndex, bool spawn = false)
         {
             if (!_slots[atIndex].HasItem)
                 throw new InventoryException(InventoryOperation.Remove, "Slot is Empty");
-                
-            if(spawn && TryGetComponent<GameItemSpawner>(out var itemSpawner))
+
+            if (spawn && TryGetComponent<GameItemSpawner>(out var itemSpawner))
             {
                 itemSpawner.SpawnItem(_slots[atIndex].State);
             }
@@ -92,11 +97,11 @@ namespace InventorySystem
             ClearSlot(atIndex);
             return new ItemStack();
         }
-        
+
         public ItemStack RemoveItem(ItemStack itemStack)
         {
             var itemSlot = FindSlot(itemStack.Item);
-            if (itemSlot == null) 
+            if (itemSlot == null)
             {
                 throw new InventoryException(InventoryOperation.Remove, "No Item in the Inventory");
             }
@@ -117,27 +122,49 @@ namespace InventorySystem
 
         public ItemStack AddItem(ItemStack itemStack)
         {
-            var relevantSlot = FindSlot(itemStack.Item, true);
-            if (IsFull() && relevantSlot == null) 
+            InventorySlot relevantSlot = null;
+            int remainingItems = itemStack.NumberOfItems;
+
+            // Dodajemy do istniejących slotów z tym samym przedmiotem
+            if (itemStack.Item.IsStackable)
             {
-                throw new InventoryException(InventoryOperation.Add, "Inventory is full");
+                foreach (var slot in _slots.Where(s => s.HasItem && s.Item == itemStack.Item))
+                {
+                    int canAdd = itemStack.Item.MaxStackSize - slot.NumberOfItems;
+                    if (canAdd <= 0)
+                        continue;
+
+                    int added = Mathf.Min(remainingItems, canAdd);
+                    slot.NumberOfItems += added;
+                    remainingItems -= added;
+                    relevantSlot = slot;
+
+                    if (remainingItems <= 0)
+                        return relevantSlot.State;
+                }
             }
 
-            if (relevantSlot != null)
+            // Dodajemy do pustych slotów
+            while (remainingItems > 0)
             {
-                relevantSlot.NumberOfItems += itemStack.NumberOfItems;
-            }
+                var emptySlot = _slots.FirstOrDefault(slot => !slot.HasItem);
+                if (emptySlot == null)
+                    throw new InventoryException(InventoryOperation.Add, "Inventory is full");
 
-            else
-            {
-                relevantSlot = _slots.First(slot => !slot.HasItem);
-                relevantSlot.State = itemStack;
+                int toAdd = itemStack.Item.IsStackable
+                    ? Mathf.Min(remainingItems, itemStack.Item.MaxStackSize)
+                    : 1;
+
+                emptySlot.State = new ItemStack(itemStack.Item, toAdd);
+                remainingItems -= toAdd;
+                relevantSlot = emptySlot;
+
+                if (!itemStack.Item.IsStackable || remainingItems <= 0)
+                    break;
             }
 
             return relevantSlot.State;
-            
         }
-
 
         public void ClearSlot(int atIndex)
         {
@@ -149,9 +176,9 @@ namespace InventorySystem
             if (!_slots[atIndex].HasItem)
                 throw new InventoryException(InventoryOperation.Remove, "Slot is Empty");
 
-            if(spawn)
+            if (spawn)
             {
-                if(TryGetComponent<GameItemSpawner>(out var itemSpawner))
+                if (TryGetComponent<GameItemSpawner>(out var itemSpawner))
                 {
                     itemSpawner.SpawnItem(_slots[atIndex].State, true);
                     if (!_slots[atIndex].Item.IsStackable)
@@ -161,8 +188,8 @@ namespace InventorySystem
                     }
                 }
             }
-            
-            _slots[atIndex].NumberOfItems --;
+
+            _slots[atIndex].NumberOfItems--;
             if (_slots[atIndex].NumberOfItems == 0)
             {
                 ClearSlot(atIndex);
@@ -182,4 +209,3 @@ namespace InventorySystem
         }
     }
 }
-

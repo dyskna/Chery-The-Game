@@ -18,16 +18,12 @@ public class NPCWandering : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
     private Vector2 startPosition;
-    private DialogueManager dialogueManager;
+
 
     private void Awake()
     {
-        // Automatyczne pobranie komponentów, jeśli nie zostały ręcznie przypisane
         if (animator == null) animator = GetComponent<Animator>();
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-
-        // Pobierz instancję DialogueManager
-        dialogueManager = DialogueManager.GetInstance();
     }
 
     private void Start()
@@ -38,11 +34,13 @@ public class NPCWandering : MonoBehaviour
 
     private IEnumerator WanderRoutine()
     {
+        Debug.Log(DialogueManager.GetInstance().GetDialogueIsPlaying());
+        Debug.Log("Wandering"+isWandering);
         while (isWandering)
         {
-            // Wędruj tylko jeśli nie podąża, nie jest w dialogu i ma wszystkie wymagane komponenty
+            
             if (!isFollowing && 
-                (dialogueManager == null || !dialogueManager.GetDialogueIsPlaying()) && 
+                (DialogueManager.GetInstance().GetDialogueIsPlaying() == false) && 
                 rb != null && animator != null)
             {
                 yield return StartCoroutine(Wander());
@@ -60,8 +58,7 @@ public class NPCWandering : MonoBehaviour
 
         while (elapsedTime < 3f)
         {
-            // Przerwij wędrowanie, jeśli dialog się rozpocznie
-            if (dialogueManager != null && dialogueManager.GetDialogueIsPlaying())
+            if (DialogueManager.GetInstance().GetDialogueIsPlaying() == true)
             {
                 if (animator != null)
                     animator.SetFloat("Speed", 0);
@@ -73,15 +70,12 @@ public class NPCWandering : MonoBehaviour
 
             if (distanceToTarget > 0.1f)
             {
-                // Animacja (opcjonalna)
                 if (animator != null)
                 {
                     animator.SetFloat("Speed", moveSpeed);
                     animator.SetFloat("Horizontal", direction.x);
                     animator.SetFloat("Vertical", direction.y);
                 }
-
-                // Ruch
                 rb.MovePosition(
                     (Vector2)transform.position + direction * moveSpeed * Time.fixedDeltaTime
                 );
@@ -101,11 +95,11 @@ public class NPCWandering : MonoBehaviour
             animator.SetFloat("Speed", 0);
     }
 
-    // Metoda do zmiany stanu wędrowania z zewnątrz
     public void SetFollowing()
     {
         isFollowing = true;
         isWandering = false;
+        StopAllCoroutines();
     }
 
     // Metoda do włączania/wyłączania wędrowania
@@ -113,5 +107,7 @@ public class NPCWandering : MonoBehaviour
     {
         isWandering = true;
         isFollowing = false;
+        StopAllCoroutines(); 
+        StartCoroutine(WanderRoutine());
     }
 }

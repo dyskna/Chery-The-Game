@@ -177,7 +177,7 @@ public class DogAI : MonoBehaviour, INPC
 
     public void OnAnimFetchEnd()
     {
-        GameItemSpawner itemSpawner = GameObject.FindObjectOfType<GameItemSpawner>();
+        GameItemSpawner itemSpawner = GameObject.FindFirstObjectByType<GameItemSpawner>();
         int amountOfFruit = Random.Range(minFruit,maxFruit);
         Debug.Log("Dog spawned coins "+ amountOfFruit);
         if (itemSpawner != null)

@@ -129,11 +129,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3535659083464120210, guid: c4f77dc0d04797543b5e3ac253325f73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.073
+      value: 2.159
       objectReference: {fileID: 0}
     - target: {fileID: 3535659083464120210, guid: c4f77dc0d04797543b5e3ac253325f73, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52
+      value: 0.408
       objectReference: {fileID: 0}
     - target: {fileID: 3535659083464120210, guid: c4f77dc0d04797543b5e3ac253325f73, type: 3}
       propertyPath: m_LocalPosition.z
@@ -363,6 +363,38 @@ PrefabInstance:
     - target: {fileID: 6078885605542647342, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383991007736330107, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: maxFruit
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383991007736330107, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: minFruit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.08115661
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.08168094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.010536313
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.039536633
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444843182303375702, guid: 316cfdabdcee2ac4ab5dcc1f722e56f0, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -802,6 +834,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (1)
@@ -812,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.144
+      value: -0.092
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1622,6 +1658,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (7)
@@ -2026,6 +2066,11 @@ Transform:
 --- !u!1 &527089486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1645522644652025664, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
+  m_PrefabInstance: {fileID: 1392017333}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &527089488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
   m_PrefabInstance: {fileID: 1392017333}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &536396870
@@ -5161,7 +5206,7 @@ Transform:
   m_GameObject: {fileID: 598409694}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03236699, y: -0.00023844838, z: 0}
+  m_LocalPosition: {x: 0.032492697, y: -0.00023931265, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5337,6 +5382,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1006647251}
     m_Modifications:
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1875099410}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (5)
@@ -6030,6 +6083,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (3)
@@ -6374,7 +6431,8 @@ Transform:
   m_LocalPosition: {x: 2.028, y: 0.333, z: 0}
   m_LocalScale: {x: 0.99731, y: 0.99192995, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 527089488}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &912825470
@@ -6390,8 +6448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wanderRadius: 1.5
-  minWanderWaitTime: 5
-  maxWanderWaitTime: 8
+  minWanderWaitTime: 3
+  maxWanderWaitTime: 4
   moveSpeed: 0.25
   isWandering: 1
   isFollowing: 0
@@ -7215,6 +7273,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0
@@ -7225,7 +7287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.134
+      value: -0.095
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7522,7 +7584,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 912825469}
     m_Modifications:
     - target: {fileID: 949096281563967640, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_SortingLayer
@@ -7542,11 +7604,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.29999998
+      value: 0.30080914
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.30208
+      value: 0.30453762
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalScale.z
@@ -7554,11 +7616,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.97199994
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.491
+      value: 0.088
       objectReference: {fileID: 0}
     - target: {fileID: 4590313403159389135, guid: b94e299690f34874c9bdf06a4038cd62, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8018,6 +8080,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (2)
@@ -8342,6 +8408,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1875099405}
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (4)
@@ -8352,7 +8422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.476
+      value: 0.388
       objectReference: {fileID: 0}
     - target: {fileID: 2845686595949049545, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8641,6 +8711,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1006647251}
     m_Modifications:
+    - target: {fileID: 2622460491194785708, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1875099409}
     - target: {fileID: 2635695293308863822, guid: e364ec1507b8c9841845bafacfebf1c9, type: 3}
       propertyPath: m_Name
       value: CherryTree_0 (6)
@@ -9618,6 +9692,8 @@ GameObject:
   - component: {fileID: 2082782465}
   - component: {fileID: 2082782467}
   - component: {fileID: 2082782468}
+  - component: {fileID: 2082782470}
+  - component: {fileID: 2082782469}
   m_Layer: 0
   m_Name: Van
   m_TagString: Untagged
@@ -9763,6 +9839,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.14488365, y: 0.31058514}
   m_EdgeRadius: 0
+--- !u!114 &2082782469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082782464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f629ec17f6376544282c1d4a64493ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeline: {fileID: 2082782470}
+--- !u!320 &2082782470
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082782464}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 0aca5c5ce1eed004db0a0ecba18e4d8c, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -161196615480971295, guid: 0aca5c5ce1eed004db0a0ecba18e4d8c, type: 2}
+    value: {fileID: 2082782467}
+  - key: {fileID: 472283902300910282, guid: 0aca5c5ce1eed004db0a0ecba18e4d8c, type: 2}
+    value: {fileID: 1875099410}
+  - key: {fileID: 7210853429244866560, guid: 0aca5c5ce1eed004db0a0ecba18e4d8c, type: 2}
+    value: {fileID: 1875099410}
+  m_ExposedReferences:
+    m_References: []
 --- !u!4 &2086045196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1740496163935585541, guid: e69b706fa00f0fa4c9eb2b5842b6eef0, type: 3}
@@ -9913,4 +10025,3 @@ SceneRoots:
   - {fileID: 135427452}
   - {fileID: 239474817}
   - {fileID: 912825469}
-  - {fileID: 1392017333}

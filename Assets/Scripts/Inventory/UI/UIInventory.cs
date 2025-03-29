@@ -1,6 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 
 namespace InventorySystem.UI
 {
@@ -20,7 +20,8 @@ namespace InventorySystem.UI
         [ContextMenu("Initialize Inventory")]
         private void InitializeInventoryUI()
         {
-            if(_inventory == null || _inventorySlotPrefab == null) return;
+            if (_inventory == null || _inventorySlotPrefab == null)
+                return;
 
             _slots = new List<UIInventorySlot>(_inventory.Size);
             for (var i = 0; i < _inventory.Size; i++)
@@ -34,4 +35,3 @@ namespace InventorySystem.UI
         }
     }
 }
-

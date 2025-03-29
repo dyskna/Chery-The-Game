@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Coin
   _isStackable: 1
+  _maxStackSize: 64
   _inGameSprite: {fileID: -1064591880086829361, guid: 9b6b27b3c86811840a0b03ffbfaf276b, type: 3}
   _uiSprite: {fileID: -1064591880086829361, guid: 9b6b27b3c86811840a0b03ffbfaf276b, type: 3}
