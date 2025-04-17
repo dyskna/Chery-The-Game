@@ -1,10 +1,14 @@
 -> main
 
 === main ===
-Hau Hau!
-    * Czy możesz mi coś przynieść? #Dog:Fetch
+Hau Hau! #Dog: 
+‎ 
+    * [Czy możesz mi coś przynieść?] #Dog:Fetch
+        Hau!
         -> END 
-    * Pogłaszcz Łatka #Dog:Pet
+    * [Pogłaszcz Łatka] #Dog:Pet
+        Hau! 
         -> END
-    * Muszę iść coś zrobić. Bywaj piesku!
+    * [Muszę iść coś zrobić. Bywaj piesku!]
+        Hau!
         -> END

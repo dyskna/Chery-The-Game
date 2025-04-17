@@ -52,15 +52,34 @@ namespace InventorySystem
             //odpowiada za animke i znikanie postaci na 5 sec
             _isHarvested = true;
             _animator.SetTrigger("Harvested");
-            DisableControlsTemporarily(5f);
+            //DisableControlsTemporarily(5f);
 
             //text
             var randomIndex = Random.Range(0, _messages.Length);
             var message = _messages[randomIndex];
             var msgObject = Instantiate(_messagePrefab, transform.position, Quaternion.identity);
             msgObject.GetComponentInChildren<TMP_Text>().SetText(message);
+        }
 
-            //zbieranie
+        // public void DisableControlsTemporarily(float duration)
+        // {
+        //     StartCoroutine(DisableControlsForSeconds(duration));
+        // }
+
+        //method activated by start of animation
+        private void DisableControlsForSeconds()
+        {
+            playerMovement.DisableMovement();
+            player.GetComponent<Renderer>().enabled = false;
+        }
+
+        //method activated by end of animation
+        private void EnableControlsForSeconds()
+        {
+            playerMovement.EnableMovement();
+            player.GetComponent<Renderer>().enabled = true;
+
+            //harvesting
             GameItemSpawner itemSpawner = GameObject.FindObjectOfType<GameItemSpawner>();
             int amountOfFruit = Random.Range(minFruit, maxFruit);
             Debug.Log("Fruit on this tree: " + amountOfFruit);
@@ -71,22 +90,6 @@ namespace InventorySystem
                     itemSpawner.SpawnFruit(position, 1, null);
                 }
             }
-        }
-
-        public void DisableControlsTemporarily(float duration)
-        {
-            StartCoroutine(DisableControlsForSeconds(duration));
-        }
-
-        private IEnumerator DisableControlsForSeconds(float seconds)
-        {
-            playerMovement.DisableMovement();
-            player.GetComponent<Renderer>().enabled = false;
-
-            yield return new WaitForSeconds(seconds);
-
-            playerMovement.EnableMovement();
-            player.GetComponent<Renderer>().enabled = true;
         }
 
         public bool CanInteract()
