@@ -5,6 +5,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using System.Linq;
+using Ink.UnityIntegration;
 
 
 public interface INPC
@@ -22,9 +23,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    [Header("Animations")]
-    [SerializeField] private Animator characterAnimator1;
+    [Header("Portraits")]
+    [SerializeField] private Animator portraitImage;
     
+    [Header("Globals Ink File")]
+    [SerializeField] private InkFile globalsInkFile;
+
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
     private bool choiceToMake = false;
@@ -32,6 +36,8 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<string, INPC> npcDictionary = new Dictionary<string, INPC>();
 
     private static DialogueManager instance;
+
+    private DialogueVariables dialogueVariables;
 
     private void Awake()
     {
@@ -51,6 +57,8 @@ public class DialogueManager : MonoBehaviour
                 npcDictionary.Add(npcName, npc);
             }
         }
+
+        dialogueVariables = new DialogueVariables(globalsInkFile.filePath);
     }
 
     public bool GetDialogueIsPlaying()
@@ -91,10 +99,12 @@ public class DialogueManager : MonoBehaviour
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        dialogueVariables.StartListening(currentStory);
     }
 
     private void ExitDialogueMode()
     {
+        dialogueVariables.StopListening(currentStory);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -127,6 +137,8 @@ public class DialogueManager : MonoBehaviour
 
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
+
+            portraitImage.Play(tagKey);
 
             if (npcDictionary.TryGetValue(tagKey, out INPC npcScript))
             {
@@ -171,6 +183,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log(choiceIndex);
         currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
         ContinueStory();
         choiceToMake = false;
     }
