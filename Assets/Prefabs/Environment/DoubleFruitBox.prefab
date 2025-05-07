@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6732147876586897757}
   - component: {fileID: 7437171292552264741}
+  - component: {fileID: 8515936467394270941}
+  - component: {fileID: 6663091866590334232}
   m_Layer: 0
   m_Name: DoubleFruitBox
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7820932268236679167}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.3157729, y: 0.7816573, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5014722ddea7aee49bb05db7594a5d80, type: 2}
+  - {fileID: 2100000, guid: 6cb273ca5e280f44b979d93aee86cd9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2053327545
-  m_SortingLayer: 3
+  m_SortingLayerID: -695690775
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -7885879002698242397, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,3 +89,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &8515936467394270941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820932268236679167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  lightIntensity: 1
+  ambientLight: 0.5
+  fadeDistance: 0.3
+  debugMode: 0
+  lightAngle: 90
+  lightAngleRange: 180
+--- !u!114 &6663091866590334232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820932268236679167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_Priority: 1
+  m_ComponentVersion: 5
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 2d50617200000000f784d14fe99988d647b59c8529fa1aaf47e6814c
+  m_ShapePath:
+  - {x: -0.07999992, y: -0.024757445, z: 0}
+  - {x: -0.08073616, y: 0.08886403, z: 0}
+  - {x: -0.07120013, y: 0.08704817, z: 0}
+  - {x: -0.06899166, y: 0.0760057, z: 0}
+  - {x: -0.060157537, y: 0.0760057, z: 0}
+  - {x: -0.06163001, y: 0.08778435, z: 0}
+  - {x: -0.051323652, y: 0.089256704, z: 0}
+  - {x: -0.05205965, y: 0.10913324, z: 0}
+  - {x: -0.041017294, y: 0.10913324, z: 0}
+  - {x: -0.041017294, y: 0.096618354, z: 0}
+  - {x: 0.03775263, y: 0.098826885, z: 0}
+  - {x: 0.041433334, y: 0.10692471, z: 0}
+  - {x: 0.050267458, y: 0.10766089, z: 0}
+  - {x: 0.051003695, y: 0.086312056, z: 0}
+  - {x: 0.059101343, y: 0.086312056, z: 0}
+  - {x: 0.059101343, y: 0.078950346, z: 0}
+  - {x: 0.06793547, y: 0.07968652, z: 0}
+  - {x: 0.0686717, y: 0.08704817, z: 0}
+  - {x: 0.07999992, y: 0.08812785, z: 0}
+  - {x: 0.0814724, y: -0.024757445, z: 0}
+  m_ShapePathHash: 470486837
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: 0.0003681183, y: 0.0421879, z: 0}
+      m_Extent: {x: 0.08110428, y: 0.066945344, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0.008
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0.008
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0.008
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 7437171292552264741}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

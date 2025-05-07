@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TreeSoftFade
+  m_Name: CustomSoftFade
   m_Shader: {fileID: 4800000, guid: 00133b2c3c5e9cf4fb83c7298fc80875, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,14 +41,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AmbientLight: 0.3
+    - _DebugMode: 0
     - _EnableExternalAlpha: 0
+    - _FadeDistance: 3
     - _FadeStrength: 10
+    - _LightAngle: 180
+    - _LightAngleRange: 90
     - _LightConeAngle: 45
     - _LightFalloff: 2
+    - _LightIntensity: 1
     - _LightRadius: 5
     - _MinLight: 0.3
     - _ShadowIntensity: 0.7
     - _ShadowRadius: 5
+    - _TransitionSmoothness: 29.6
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

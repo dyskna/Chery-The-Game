@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4987569596139104658}
   - component: {fileID: 1733724124724727955}
+  - component: {fileID: 8413193224274872537}
+  - component: {fileID: 2650345132739514645}
   m_Layer: 0
   m_Name: FruitBox_g
   m_TagString: Untagged
@@ -25,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331390734994976323}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1355895, y: -0.59177226, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -55,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5014722ddea7aee49bb05db7594a5d80, type: 2}
+  - {fileID: 2100000, guid: 6cb273ca5e280f44b979d93aee86cd9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -87,3 +89,90 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &8413193224274872537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331390734994976323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  lightIntensity: 1
+  ambientLight: 0.5
+  fadeDistance: 0.3
+  debugMode: 0
+  lightAngle: 90
+  lightAngleRange: 180
+--- !u!114 &2650345132739514645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331390734994976323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_Priority: 1
+  m_ComponentVersion: 5
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_AlphaCutoff: 0.1
+  m_ApplyToSortingLayers: 2d50617200000000f784d14fe99988d647b59c8529fa1aaf47e6814c
+  m_ShapePath:
+  - {x: -0.08064306, y: -0.02440834, z: 0}
+  - {x: -0.0808543, y: 0.048642218, z: 0}
+  - {x: -0.068951726, y: 0.047180414, z: 0}
+  - {x: -0.06830871, y: 0.03496194, z: 0}
+  - {x: -0.059948683, y: 0.035605013, z: 0}
+  - {x: -0.05930555, y: 0.04653734, z: 0}
+  - {x: -0.05139661, y: 0.04837054, z: 0}
+  - {x: -0.05094564, y: 0.06775892, z: 0}
+  - {x: -0.03808403, y: 0.06711584, z: 0}
+  - {x: -0.03808403, y: 0.056183517, z: 0}
+  - {x: 0.039728284, y: 0.055540442, z: 0}
+  - {x: 0.03908515, y: 0.06647277, z: 0}
+  - {x: 0.050017476, y: 0.065829635, z: 0}
+  - {x: 0.04937446, y: 0.047180414, z: 0}
+  - {x: 0.059663653, y: 0.045894265, z: 0}
+  - {x: 0.060949802, y: 0.036891222, z: 0}
+  - {x: 0.06930983, y: 0.036891222, z: 0}
+  - {x: 0.07088804, y: 0.045875013, z: 0}
+  - {x: 0.08171332, y: 0.047360897, z: 0}
+  - {x: 0.08064318, y: -0.025267303, z: 0}
+  m_ShapePathHash: 722169845
+  m_InstanceId: 0
+  m_ShadowShape2DComponent: {fileID: 0}
+  m_ShadowShape2DProvider:
+    rid: -2
+  m_ShadowCastingSource: 1
+  m_ShadowMesh:
+    m_Mesh: {fileID: 0}
+    m_LocalBounds:
+      m_Center: {x: 0.00042951107, y: 0.021245807, z: 0}
+      m_Extent: {x: 0.08128381, y: 0.04651311, z: 0}
+    m_EdgeProcessing: 1
+    m_TrimEdge: 0.008
+    m_FlipX: 0
+    m_FlipY: 0
+    m_InitialTrim: 0.008
+  m_CastingOption: 1
+  m_PreviousTrimEdge: 0.008
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
+  m_PreviousShadowShape2DSource: {fileID: 1733724124724727955}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

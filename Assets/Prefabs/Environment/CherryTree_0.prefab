@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2622460491194785708}
   - component: {fileID: 8807572854678868754}
   - component: {fileID: 6812711114003084140}
-  - component: {fileID: 7835424672119394743}
+  - component: {fileID: 4533819082329680587}
   m_Layer: 9
   m_Name: CherryTree_0
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.614522, y: -0.24413666, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -298,7 +298,7 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
---- !u!114 &7835424672119394743
+--- !u!114 &4533819082329680587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,4 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSource: {fileID: 0}
+  playerTransform: {fileID: 0}
+  lightIntensity: 1
+  ambientLight: 0.7
+  fadeDistance: 0.3
+  debugMode: 0
+  lightAngle: 90
+  lightAngleRange: 180

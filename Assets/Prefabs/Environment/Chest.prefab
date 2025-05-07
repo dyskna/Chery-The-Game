@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6444843182303375702}
   - component: {fileID: 2151721889586812595}
   - component: {fileID: 6383991007736330107}
+  - component: {fileID: 1032723235639653369}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6078885605542647342}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.255, y: 0.236, z: 1.6736307}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5014722ddea7aee49bb05db7594a5d80, type: 2}
+  - {fileID: 2100000, guid: 6cb273ca5e280f44b979d93aee86cd9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,17 +125,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0007289797, y: 0.027781546}
+  m_Offset: {x: 0.010536313, y: 0.039536633}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.57291603, y: 0.13540699}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.08017704, y: 0.10519111}
+  m_Size: {x: 0.08115661, y: 0.08168094}
   m_EdgeRadius: 0
 --- !u!95 &2151721889586812595
 Animator:
@@ -170,5 +171,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1927f94a4f1dd3140a3557bea4f5ad93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFruit: 10
-  maxFruit: 20
+  minFruit: 30
+  maxFruit: 40
+--- !u!114 &1032723235639653369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078885605542647342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  lightIntensity: 1
+  ambientLight: 0.5
+  fadeDistance: 0.3
+  debugMode: 0
+  lightAngle: 90
+  lightAngleRange: 180
