@@ -33,6 +33,7 @@ public class FarmerAI : MonoBehaviour, INPC
     private void CherryToBox()
     {
         Debug.Log("works");
+        //string value = ((Ink.Runtime.StringValue) DialogueManager.GetInstance().GetVariableState("value")).value;
     }
     
 }

@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.614522, y: -0.24413666, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0
-  m_CastingOption: 1
+  m_CastingOption: 2
   m_PreviousTrimEdge: 0.02
   m_PreviousEdgeProcessing: 1
   m_PreviousShadowCastingSource: 1
@@ -310,4 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightSource: {fileID: 0}
+  playerTransform: {fileID: 0}
+  lightIntensity: 0.5
+  ambientLight: 0.5
+  fadeDistance: 1
+  debugMode: 0
+  lightAngle: 90
+  lightAngleRange: 153
