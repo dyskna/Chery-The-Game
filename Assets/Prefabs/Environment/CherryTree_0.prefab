@@ -317,3 +317,9 @@ MonoBehaviour:
   debugMode: 0
   lightAngle: 90
   lightAngleRange: 180
+  worldLightScript: {fileID: 0}
+  useGlobalLight: 1
+  currentLightColor: {r: 1, g: 1, b: 1, a: 1}
+  currentLightIntensity: 1
+  playerInRange: 0
+  baseAmbientLight: 0.49
