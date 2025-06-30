@@ -37,22 +37,26 @@ namespace InventorySystem
         private Vector2 position;
         public PlayerMovement playerMovement;
 
+        //AI
+        public bool isAI = false;
+        private TreeAgent aiAgent;
         void Start()
         {
             _animator = GetComponent<Animator>();
             position = transform.position;
-            playerMovement = GameObject
-                .FindGameObjectWithTag("Player")
-                .GetComponent<PlayerMovement>();
+            if (!isAI)
+            {
+                playerMovement = GameObject
+                    .FindGameObjectWithTag("Player")
+                    .GetComponent<PlayerMovement>();
+            }
         }
 
         [System.Obsolete]
         public void Interact()
         {
-            //odpowiada za animke i znikanie postaci na 5 sec
             _isHarvested = true;
             _animator.SetTrigger("Harvested");
-            //DisableControlsTemporarily(5f);
 
             //text
             var randomIndex = Random.Range(0, _messages.Length);
@@ -61,28 +65,56 @@ namespace InventorySystem
             msgObject.GetComponentInChildren<TMP_Text>().SetText(message);
         }
 
-        // public void DisableControlsTemporarily(float duration)
-        // {
-        //     StartCoroutine(DisableControlsForSeconds(duration));
-        // }
+        [System.Obsolete]
+        public void InteractAsAI(TreeAgent agent)
+        {
+            isAI = true;
+            aiAgent = agent;
+            Interact();
+        }
+
 
         //method activated by start of animation
         private void DisableControlsForSeconds()
         {
-            playerMovement.DisableMovement();
-            player.GetComponent<Renderer>().enabled = false;
+            if (!isAI)
+            {
+                // Player logic
+                playerMovement.DisableMovement();
+                player.GetComponent<Renderer>().enabled = false;
+            }
+            else if (aiAgent != null)
+            {
+                // AI logic
+                aiAgent.FreezeAgent();
+            }
         }
 
         //method activated by end of animation
         private void EnableControlsForSeconds()
         {
-            playerMovement.EnableMovement();
-            player.GetComponent<Renderer>().enabled = true;
+            if (!isAI)
+            {
+                // Player logic
+                playerMovement.EnableMovement();
+                player.GetComponent<Renderer>().enabled = true;
+            }
+            else if (aiAgent != null)
+            {
+                // AI logic
+                aiAgent.UnfreezeAgent();
+                isAI = false;
+                aiAgent = null;
+            }
 
-            //harvesting
+            // Spawn cherries for both player and AI
+            SpawnCherries();
+        }
+
+        private void SpawnCherries()
+        {
             GameItemSpawner itemSpawner = GameObject.FindObjectOfType<GameItemSpawner>();
             int amountOfFruit = Random.Range(minFruit, maxFruit);
-            Debug.Log("Fruit on this tree: " + amountOfFruit);
             if (itemSpawner != null)
             {
                 for (int i = 0; i < amountOfFruit; i++)

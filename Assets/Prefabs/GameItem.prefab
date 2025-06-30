@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2292287338343734550}
   m_Layer: 3
   m_Name: Cherry (2)
-  m_TagString: Untagged
+  m_TagString: Cherry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,9 +98,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1283581511
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 318697773, guid: 6efa3c0fa0e0bc84b8e729d6042c63c0, type: 3}
+  m_Sprite: {fileID: 369929142, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

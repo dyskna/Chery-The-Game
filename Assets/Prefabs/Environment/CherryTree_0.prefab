@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4533819082329680587}
   m_Layer: 9
   m_Name: CherryTree_0
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   - "Zbierasz wi\u015Bnie pod\u015Bpiewuj\u0105c..."
   - "Spada Ci kilka wi\u015Bni na ziemie..."
   playerMovement: {fileID: 0}
+  isAI: 1
 --- !u!61 &8807572854678868754
 BoxCollider2D:
   m_ObjectHideFlags: 0

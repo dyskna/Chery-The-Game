@@ -1,64 +1,156 @@
+using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using UnityEngine;
-using System.Collections.Generic;
-using InventorySystem;
 
-
-public class CherryAgent : Agent
+namespace InventorySystem
 {
-    public float speed = 5f;
-    public List<Harvesting> trees;
-    private Harvesting currentTarget;
+    public class TreeAgent : Agent
+{
+    [Header("Movement Settings")]
+    [SerializeField] private float moveSpeed = 5f;
 
-    public override void OnEpisodeBegin()
-    {
-        currentTarget = null;
+    [Header("Interaction Settings")]
+    [SerializeField] private float interactionRadius = 1.5f;
+
+    private Rigidbody2D rb;
+    private SpriteRenderer agentRenderer;
+    private bool isFrozen = false;
+
+        public override void Initialize()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            agentRenderer = GetComponent<SpriteRenderer>();
+
+            // Set rigidbody properties
+            rb.gravityScale = 0;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
+            // Add action space validation
+            var actionSpec = GetComponent<Unity.MLAgents.Policies.BehaviorParameters>().BrainParameters.ActionSpec;
+            Debug.Log($"Continuous Actions: {actionSpec.NumContinuousActions}, " +
+             $"Discrete Branches: {string.Join(",", actionSpec.BranchSizes)}"); 
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        // 1. Agent's frozen state
+        sensor.AddObservation(isFrozen);
+
+        // 2. Nearest tree information
+        Vector2 treeDirection = Vector2.zero;
+        float treeDistance = float.MaxValue;
+        bool canInteract = false;
+
+        GameObject[] trees = GameObject.FindGameObjectsWithTag("Tree");
         foreach (var tree in trees)
         {
-            sensor.AddObservation(tree.transform.position);
-            sensor.AddObservation(tree._isHarvested ? 1 : 0);
+            float dist = Vector2.Distance(transform.position, tree.transform.position);
+            if (dist < treeDistance)
+            {
+                treeDistance = dist;
+                treeDirection = (tree.transform.position - transform.position).normalized;
+
+                var interactable = tree.GetComponent<IInteractable>();
+                canInteract = (interactable != null && interactable.CanInteract());
+            }
         }
 
-        sensor.AddObservation(transform.position);
+        sensor.AddObservation(treeDirection);
+        sensor.AddObservation(treeDistance);
+        sensor.AddObservation(canInteract);
+
+        // 3. Cherries information
+        GameObject[] cherries = GameObject.FindGameObjectsWithTag("Cherry");
+        sensor.AddObservation(cherries.Length);
+
+        if (cherries.Length > 0)
+        {
+            Vector2 closestCherryDir = (cherries[0].transform.position - transform.position).normalized;
+            sensor.AddObservation(closestCherryDir);
+        }
+        else
+        {
+            sensor.AddObservation(Vector2.zero);
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        int targetIndex = Mathf.FloorToInt(actions.DiscreteActions[0]);
-
-        if (targetIndex < trees.Count)
+        // Skip actions if frozen (during interaction animation)
+        if (isFrozen)
         {
-            currentTarget = trees[targetIndex];
-            MoveToTarget();
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        // Movement
+        float moveX = actions.ContinuousActions[0];
+        float moveY = actions.ContinuousActions[1];
+        rb.linearVelocity = new Vector2(moveX, moveY) * moveSpeed;
+
+        // Interaction
+        int shouldInteract = actions.DiscreteActions[0];
+        if (shouldInteract == 1)
+        {
+            TryInteractWithTree();
         }
     }
 
-    private void MoveToTarget()
+    private void TryInteractWithTree()
     {
-        if (currentTarget == null || currentTarget._isHarvested) return;
-
-        Vector2 direction = (currentTarget.transform.position - transform.position).normalized;
-        transform.position += (Vector3)(direction * speed * Time.deltaTime);
-
-        if (Vector2.Distance(transform.position, currentTarget.transform.position) < 0.5f && currentTarget.CanInteract())
+        Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, interactionRadius);
+        foreach (var collider in nearbyObjects)
         {
-            currentTarget.Interact(); // Add a check to ensure this is AI-safe
-            CherryGameManager manager = FindObjectOfType<CherryGameManager>();
-            if (manager != null)
-                manager.AddScore(false, UnityEngine.Random.Range(1, 3)); // Simulate reward
+            if (collider.CompareTag("Tree"))
+            {
+                var tree = collider.GetComponent<Harvesting>();
+                if (tree != null && tree.CanInteract())
+                {
+                    tree.InteractAsAI(this);
+                    AddReward(0.5f); // Reward for starting interaction
+                    break;
+                }
+            }
         }
+    }
+
+    // Called by Harvesting script during animation event
+    public void FreezeAgent()
+    {
+        isFrozen = true;
+        agentRenderer.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+    }
+
+    // Called by Harvesting script during animation event
+    public void UnfreezeAgent()
+    {
+        isFrozen = false;
+        agentRenderer.enabled = true;
+    }
+
+    // Call this when the agent collects a cherry
+    public void OnCherryCollected()
+    {
+        AddReward(1.0f); // Reward for collecting cherry
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        // For debugging AI decisions
+        var continuousActions = actionsOut.ContinuousActions;
+        continuousActions[0] = Input.GetAxisRaw("Horizontal");
+        continuousActions[1] = Input.GetAxisRaw("Vertical");
+
         var discreteActions = actionsOut.DiscreteActions;
-        discreteActions[0] = UnityEngine.Random.Range(0, trees.Count);
+        discreteActions[0] = Input.GetKey(KeyCode.E) ? 1 : 0;
     }
+
+    // Visualize interaction radius in editor
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRadius);
+    }
+}
 }
