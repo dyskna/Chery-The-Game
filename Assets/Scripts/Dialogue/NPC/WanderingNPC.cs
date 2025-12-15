@@ -34,8 +34,8 @@ public class NPCWandering : MonoBehaviour
 
     private IEnumerator WanderRoutine()
     {
-        Debug.Log(DialogueManager.GetInstance().GetDialogueIsPlaying());
-        Debug.Log("Wandering"+isWandering);
+        //Debug.Log(DialogueManager.GetInstance().GetDialogueIsPlaying());
+        //Debug.Log("Wandering"+isWandering);
         while (isWandering)
         {
             
