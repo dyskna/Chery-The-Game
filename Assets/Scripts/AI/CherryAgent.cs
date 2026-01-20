@@ -70,44 +70,44 @@ public override void OnEpisodeBegin()
 
 public override void CollectObservations(VectorSensor sensor)
 {
-    // Obserwacje własne
-    sensor.AddObservation(transform.localPosition / 25f); // pozycja znormalizowana (2 floats)
-    sensor.AddObservation(rb.linearVelocity / moveSpeed); // prędkość znormalizowana (2 floats)
-    sensor.AddObservation(score / 30f); // wynik znormalizowany (1 float)
+    // Stan wlasny agenta (5 wymiarow)
+    sensor.AddObservation(transform.localPosition / 25f);    // pozycja (2D)
+    sensor.AddObservation(rb.linearVelocity / moveSpeed);    // predkosc (2D)
+    sensor.AddObservation(score / 30f);                      // wynik (1D)
 
-    // Obserwacje przeciwnika
+    // Stan przeciwnika (3 wymiary)
     if (opponent != null)
     {
-        sensor.AddObservation(opponent.transform.localPosition / 25f); // (2 floats)
-        sensor.AddObservation(opponent.GetScore() / 30f); // (1 float)
+        sensor.AddObservation(opponent.transform.localPosition / 25f);
+        sensor.AddObservation(opponent.GetScore() / 30f);
     }
     else
     {
-        sensor.AddObservation(Vector3.zero); // (2 floats)
-        sensor.AddObservation(0f); // (1 float)
+        sensor.AddObservation(Vector3.zero);
+        sensor.AddObservation(0f);
     }
 
+    // Wszystkie zasoby na arenie (13 x 5 = 65 wymiarow)
     foreach (var target in allTargets)
     {
         if (target != null)
         {
             var targetMono = target as MonoBehaviour;
             
-            // Względna pozycja celu
-            Vector3 relativePos = (targetMono.transform.localPosition - transform.localPosition) / 25f;
-            sensor.AddObservation(relativePos); // (3 floats)
+            // Pozycja wzgledna zasobu
+            Vector3 relativePos = (targetMono.transform.localPosition 
+                                   - transform.localPosition) / 25f;
+            sensor.AddObservation(relativePos);  // 3 floats
             
-            // Status dostępności
-            sensor.AddObservation(target.CanInteract() ? 1f : 0f); // (1 float)
+            // Status dostepnosci (0 = zebrane, 1 = dostepne)
+            sensor.AddObservation(target.CanInteract() ? 1f : 0f);
             
-            // Typ zasobu
-            if (target is Chest) 
-                sensor.AddObservation(1f); // skrzynia (1 float)
-            else 
-                sensor.AddObservation(0f); // drzewo (1 float)
+            // Typ zasobu (0 = drzewo, 1 = skrzynia)
+            sensor.AddObservation(target is Chest ? 1f : 0f);
         }
     }
 }
+// Calkowity rozmiar: 5 + 3 + 65 = 73 wymiary
 
 
 public override void OnActionReceived(ActionBuffers actions)

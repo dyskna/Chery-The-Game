@@ -5,7 +5,6 @@ public class Chest : MonoBehaviour, IInteractable
 {
     private Animator _animator;
     private bool _isOpened = false;
-    private float currentCooldown = 0f;
     private Vector2 position;
 
     void Awake()
@@ -31,7 +30,6 @@ public class Chest : MonoBehaviour, IInteractable
     {
         StopAllCoroutines();
         _isOpened = false;
-        currentCooldown = 0;
         if(_animator != null) _animator.SetBool("IsOpen", false);
     }
 
