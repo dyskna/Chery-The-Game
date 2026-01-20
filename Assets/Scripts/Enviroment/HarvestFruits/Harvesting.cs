@@ -1,10 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
-public class Chest : MonoBehaviour, IInteractable
+public interface IInteractable
+{
+    void Interact();
+    bool CanInteract();
+}
+public class Harvesting : MonoBehaviour, IInteractable
 {
     private Animator _animator;
-    private bool _isOpened = false;
+    private bool _isHarvested = false;
     private float currentCooldown = 0f;
     private Vector2 position;
 
@@ -16,23 +21,24 @@ public class Chest : MonoBehaviour, IInteractable
 
     public bool CanInteract()
     {
-        return !_isOpened;
+        return !_isHarvested;
     }
 
     public void Interact()
     {
         if (!CanInteract()) return;
 
-        _isOpened = true;
-        _animator.SetBool("IsOpen", true);
+        _isHarvested = true;
+        _animator.SetBool("Harvested", true);
+
     }
     
     public void ResetState()
     {
         StopAllCoroutines();
-        _isOpened = false;
+        _isHarvested = false;
         currentCooldown = 0;
-        if(_animator != null) _animator.SetBool("IsOpen", false);
+        if(_animator != null) _animator.SetBool("Harvested", false);
     }
 
 }

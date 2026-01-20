@@ -3,21 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags:
-  - PlayerLight
-  - Tree
-  - Cherry
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Items
+  - 
   - Water
   - UI
-  - Messages
-  - Player
-  - NPC
-  - Trees
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -41,33 +38,8 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: 1floor
-    uniqueID: 1918980141
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Foreground
-    uniqueID: 1339131127
-    locked: 0
-  - name: 2floor
-    uniqueID: 3599276521
-    locked: 0
-  - name: 2foreground
-    uniqueID: 2241639751
-    locked: 0
-  - name: Npc
-    uniqueID: 2937780777
-    locked: 0
-  - name: items
-    uniqueID: 1283581511
-    locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7

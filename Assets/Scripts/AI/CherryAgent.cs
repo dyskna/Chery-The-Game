@@ -1,156 +1,234 @@
 using UnityEngine;
 using Unity.MLAgents;
-using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Actuators;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
-namespace InventorySystem
+public class CompetitiveCherryAgent : Agent
 {
-    public class TreeAgent : Agent
-{
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
 
-    [Header("Interaction Settings")]
-    [SerializeField] private float interactionRadius = 1.5f;
+    [Header("Ustawienia Agenta")]
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float interactionDistance;
+
+    [Header("Nagrody i Kary")]
+    [SerializeField] private float treeRewardValue;
+    [SerializeField] private float chestRewardValue;
+    [SerializeField] private float wallCollisionPenalty;
+    [SerializeField] private float winReward;
+    [SerializeField] private float losePenalty;
+
+
+    [SerializeField] private float opponentPenalty = 0.5f;
+    
+    [Header("Ustawienia Przeciwników")]
+    [Tooltip("Przeciągnij tu drugiego agenta (do treningu AI vs AI)")]
+    [SerializeField] public CompetitiveCherryAgent opponent;
+    [Tooltip("Przeciągnij tu obiekt gracza z komponentem Collector (do gry AI vs Człowiek)")]
 
     private Rigidbody2D rb;
-    private SpriteRenderer agentRenderer;
-    private bool isFrozen = false;
+    private List<IInteractable> allTargets = new List<IInteractable>();
+    //private Vector3 startPosition;
+    private int score = 0;
+    private Transform arenaTransform;
 
-        public override void Initialize()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            agentRenderer = GetComponent<SpriteRenderer>();
+private Vector3 startPosition;  
 
-            // Set rigidbody properties
-            rb.gravityScale = 0;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        
-            // Add action space validation
-            var actionSpec = GetComponent<Unity.MLAgents.Policies.BehaviorParameters>().BrainParameters.ActionSpec;
-            Debug.Log($"Continuous Actions: {actionSpec.NumContinuousActions}, " +
-             $"Discrete Branches: {string.Join(",", actionSpec.BranchSizes)}"); 
+public override void Initialize()
+{
+    rb = GetComponent<Rigidbody2D>();
+    startPosition = transform.position; 
+
+    if (arenaTransform == null)
+    {
+        arenaTransform = transform.parent;
     }
 
-    public override void CollectObservations(VectorSensor sensor)
+    allTargets.AddRange(arenaTransform.GetComponentsInChildren<IInteractable>());
+}
+
+public override void OnEpisodeBegin()
+{
+    // Reset przez Rigidbody2D
+    if (rb != null)
     {
-        // 1. Agent's frozen state
-        sensor.AddObservation(isFrozen);
+        rb.position = startPosition;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+    }
+    
+    score = 0;
 
-        // 2. Nearest tree information
-        Vector2 treeDirection = Vector2.zero;
-        float treeDistance = float.MaxValue;
-        bool canInteract = false;
+    foreach (var target in allTargets)
+    {
+        (target as Harvesting)?.ResetState();
+        (target as Chest)?.ResetState();
+    }
+}
 
-        GameObject[] trees = GameObject.FindGameObjectsWithTag("Tree");
-        foreach (var tree in trees)
+public override void CollectObservations(VectorSensor sensor)
+{
+    // Obserwacje własne
+    sensor.AddObservation(transform.localPosition / 25f); // pozycja znormalizowana (2 floats)
+    sensor.AddObservation(rb.linearVelocity / moveSpeed); // prędkość znormalizowana (2 floats)
+    sensor.AddObservation(score / 30f); // wynik znormalizowany (1 float)
+
+    // Obserwacje przeciwnika
+    if (opponent != null)
+    {
+        sensor.AddObservation(opponent.transform.localPosition / 25f); // (2 floats)
+        sensor.AddObservation(opponent.GetScore() / 30f); // (1 float)
+    }
+    else
+    {
+        sensor.AddObservation(Vector3.zero); // (2 floats)
+        sensor.AddObservation(0f); // (1 float)
+    }
+
+    foreach (var target in allTargets)
+    {
+        if (target != null)
         {
-            float dist = Vector2.Distance(transform.position, tree.transform.position);
-            if (dist < treeDistance)
-            {
-                treeDistance = dist;
-                treeDirection = (tree.transform.position - transform.position).normalized;
+            var targetMono = target as MonoBehaviour;
+            
+            // Względna pozycja celu
+            Vector3 relativePos = (targetMono.transform.localPosition - transform.localPosition) / 25f;
+            sensor.AddObservation(relativePos); // (3 floats)
+            
+            // Status dostępności
+            sensor.AddObservation(target.CanInteract() ? 1f : 0f); // (1 float)
+            
+            // Typ zasobu
+            if (target is Chest) 
+                sensor.AddObservation(1f); // skrzynia (1 float)
+            else 
+                sensor.AddObservation(0f); // drzewo (1 float)
+        }
+    }
+}
 
-                var interactable = tree.GetComponent<IInteractable>();
-                canInteract = (interactable != null && interactable.CanInteract());
+
+public override void OnActionReceived(ActionBuffers actions)
+{
+    float moveX = actions.ContinuousActions[0];
+    float moveY = actions.ContinuousActions[1];
+    rb.linearVelocity = new Vector2(moveX, moveY) * moveSpeed;
+
+    TryInteractWithClosestTarget();
+
+    if (StepCount >= MaxStep)
+    {
+        EndEpisodeByWinner();
+    }
+}
+
+    
+    public int GetScore()
+    {
+        return score;
+    }
+
+    private void TryInteractWithClosestTarget()
+    {
+    IInteractable closestTarget = FindClosestAvailableTarget();
+    if (closestTarget == null) return;
+    
+    var closestTargetTransform = (closestTarget as MonoBehaviour).transform;
+    float distance = Vector2.Distance(transform.position, closestTargetTransform.position);
+
+    if (distance <= interactionDistance)
+    {
+        closestTarget.Interact();
+
+        int rewardValue = 0;
+        if (closestTarget is Harvesting)
+        {
+            rewardValue = (int)treeRewardValue;
+        }
+        else if (closestTarget is Chest)
+        {
+            rewardValue = (int)chestRewardValue;
+        }
+
+
+        this.score += rewardValue;
+        
+        // Nagroda dla agenta 
+        AddReward(rewardValue);
+        
+        // Kara dla przeciwnika 
+        if (opponent != null) 
+            opponent.AddReward(-opponentPenalty * rewardValue);
+
+        
+    }
+
+    
+}
+
+
+private void EndEpisodeByWinner()
+{
+    if (opponent != null)
+    {
+        int scoreDiff = score - opponent.GetScore();
+        
+        if (scoreDiff > 0)
+        {
+            AddReward(winReward + scoreDiff * 0.5f);
+        }
+        else if (scoreDiff < 0)
+        {
+            SetReward(losePenalty + scoreDiff * 0.5f);
+        }
+        else 
+        {
+            if (score == 0)
+            {
+    
+                AddReward(losePenalty * 2.0f); 
+            }
+            else
+            {
+                // Mniejsza kara za remis z punktami
+                SetReward(losePenalty/2.0f);
             }
         }
-
-        sensor.AddObservation(treeDirection);
-        sensor.AddObservation(treeDistance);
-        sensor.AddObservation(canInteract);
-
-        // 3. Cherries information
-        GameObject[] cherries = GameObject.FindGameObjectsWithTag("Cherry");
-        sensor.AddObservation(cherries.Length);
-
-        if (cherries.Length > 0)
-        {
-            Vector2 closestCherryDir = (cherries[0].transform.position - transform.position).normalized;
-            sensor.AddObservation(closestCherryDir);
-        }
-        else
-        {
-            sensor.AddObservation(Vector2.zero);
-        }
     }
+    EndEpisode();
+}
 
-    public override void OnActionReceived(ActionBuffers actions)
+    private IInteractable FindClosestAvailableTarget()
     {
-        // Skip actions if frozen (during interaction animation)
-        if (isFrozen)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
-        }
+        IInteractable closest = null;
+        float minDistance = float.MaxValue;
 
-        // Movement
-        float moveX = actions.ContinuousActions[0];
-        float moveY = actions.ContinuousActions[1];
-        rb.linearVelocity = new Vector2(moveX, moveY) * moveSpeed;
-
-        // Interaction
-        int shouldInteract = actions.DiscreteActions[0];
-        if (shouldInteract == 1)
+        foreach (var target in allTargets)
         {
-            TryInteractWithTree();
-        }
-    }
-
-    private void TryInteractWithTree()
-    {
-        Collider2D[] nearbyObjects = Physics2D.OverlapCircleAll(transform.position, interactionRadius);
-        foreach (var collider in nearbyObjects)
-        {
-            if (collider.CompareTag("Tree"))
+            var targetMono = target as MonoBehaviour;
+            if (targetMono != null && target.CanInteract()) // tylko nie zebrane
             {
-                var tree = collider.GetComponent<Harvesting>();
-                if (tree != null && tree.CanInteract())
+                float distance = Vector2.Distance(transform.position, targetMono.transform.position);
+                if (distance < minDistance)
                 {
-                    tree.InteractAsAI(this);
-                    AddReward(0.5f); // Reward for starting interaction
-                    break;
+                    minDistance = distance;
+                    closest = target;
                 }
             }
         }
+
+        return closest;
     }
 
-    // Called by Harvesting script during animation event
-    public void FreezeAgent()
+    
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        isFrozen = true;
-        agentRenderer.enabled = false;
-        rb.linearVelocity = Vector2.zero;
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            AddReward(wallCollisionPenalty);
+        }
     }
-
-    // Called by Harvesting script during animation event
-    public void UnfreezeAgent()
-    {
-        isFrozen = false;
-        agentRenderer.enabled = true;
-    }
-
-    // Call this when the agent collects a cherry
-    public void OnCherryCollected()
-    {
-        AddReward(1.0f); // Reward for collecting cherry
-    }
-
-    public override void Heuristic(in ActionBuffers actionsOut)
-    {
-        var continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxisRaw("Horizontal");
-        continuousActions[1] = Input.GetAxisRaw("Vertical");
-
-        var discreteActions = actionsOut.DiscreteActions;
-        discreteActions[0] = Input.GetKey(KeyCode.E) ? 1 : 0;
-    }
-
-    // Visualize interaction radius in editor
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
-    }
-}
+    
 }

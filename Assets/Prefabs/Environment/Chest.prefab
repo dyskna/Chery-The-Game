@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2279830726042090767}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,8 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1927f94a4f1dd3140a3557bea4f5ad93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minFruit: 15
-  maxFruit: 15
+  spawnPhysicalFruit: 1
+  cherryPrefab: {fileID: 4362720838170556479, guid: 386f18c60d1e71d4ba02b8f9fd0ab815, type: 3}
+  amountOfFruit: 15
 --- !u!114 &1032723235639653369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ MonoBehaviour:
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0
-  m_CastingOption: 1
+  m_CastingOption: 2
   m_PreviousTrimEdge: 0.008
   m_PreviousEdgeProcessing: 1
   m_PreviousShadowCastingSource: 1

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2622460491194785708}
   - component: {fileID: 8807572854678868754}
   - component: {fileID: 6812711114003084140}
-  - component: {fileID: 4533819082329680587}
   m_Layer: 9
   m_Name: CherryTree_0
   m_TagString: Tree
@@ -32,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.614522, y: -0.24413666, z: 0}
-  m_LocalScale: {x: 1, y: 0.99999994, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -2053327545
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 693954237773179707, guid: d9a61f66f3dc44f4486e9e2c06d05ad0, type: 3}
+  m_Sprite: {fileID: -1823835709, guid: 7999a92b06d9bcd4d98b8faeda613410, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,25 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58f5677652233424aad8a0bc786ca5d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _isHarvested: 0
-  player: {fileID: 0}
-  _messagePrefab: {fileID: 6389009373468687386, guid: 00bfe11cde70f054995363d6eb1e4eb3, type: 3}
-  _itemBasePrefab: {fileID: 4362720838170556479, guid: 386f18c60d1e71d4ba02b8f9fd0ab815, type: 3}
-  minFruit: 8
-  maxFruit: 8
-  _messages:
-  - "Moca mi\u0142o\u015Bci i przyja\u017Ani oskubiemy to drzewko!!!"
-  - "Jak ci si\u0119 zbiera?"
-  - "Wi\u015Bniara!!!"
-  - "Wisnia za wisni\u0105...."
-  - Wszyscy kochamy wisnie
-  - "Zbieranie wi\u015Bni..."
-  - Nie podjadaj!!!!
-  - "Zbierasz wi\u015Bnie pod\u015Bpiewuj\u0105c..."
-  - "Spada Ci kilka wi\u015Bni na ziemie..."
-  playerMovement: {fileID: 0}
-  isAI: 1
 --- !u!61 &8807572854678868754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,8 +162,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0028936565, y: 0.022003233}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.64, y: 0.51}
+    pivot: {x: 0.4820788, y: 0.24193549}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -299,25 +279,3 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
---- !u!114 &4533819082329680587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2635695293308863822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  lightIntensity: 1
-  ambientLight: 0.7
-  fadeDistance: 0.3
-  lightAngle: 90
-  lightAngleRange: 180
-  useGlobalLight: 1
-  worldLightScript: {fileID: 0}
-  baseAmbientLight: 0.49
-  debugMode: 0
