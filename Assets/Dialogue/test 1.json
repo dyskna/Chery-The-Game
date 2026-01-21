@@ -1,1 +1,0 @@
-﻿{"inkVersion":21,"root":[["^Witaj","\n","^Jesteś gotowy na minigre?","\n","^‎","\n","ev","str","^Zacznijmy!","/str","/ev",{"*":"0.c-0","flg":20},"ev","str","^Może później","/str","/ev",{"*":"0.c-1","flg":20},{"c-0":["^ ","\n","end",{"->":"0.g-0"},{"#f":5}],"c-1":["\n","end",{"->":"0.g-0"},{"#f":5}],"g-0":["done",{"#f":5}]}],"done",{"#f":1}],"listDefs":{}}

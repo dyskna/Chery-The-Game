@@ -20,94 +20,84 @@ public class CompetitiveCherryAgent : Agent
     [SerializeField] private float winReward;
     [SerializeField] private float losePenalty;
 
-
     [SerializeField] private float opponentPenalty = 0.5f;
     
     [Header("Ustawienia Przeciwników")]
     [Tooltip("Przeciągnij tu drugiego agenta (do treningu AI vs AI)")]
     [SerializeField] public CompetitiveCherryAgent opponent;
-    [Tooltip("Przeciągnij tu obiekt gracza z komponentem Collector (do gry AI vs Człowiek)")]
 
     private Rigidbody2D rb;
     private List<IInteractable> allTargets = new List<IInteractable>();
-    //private Vector3 startPosition;
+    private Vector3 startPosition;
     private int score = 0;
     private Transform arenaTransform;
 
-private Vector3 startPosition;  
-
-public override void Initialize()
-{
-    rb = GetComponent<Rigidbody2D>();
-    startPosition = transform.position; 
-
-    if (arenaTransform == null)
+    public override void Initialize()
     {
-        arenaTransform = transform.parent;
+        rb = GetComponent<Rigidbody2D>();
+        startPosition = transform.localPosition;
+
+        if (arenaTransform == null)
+        {
+            arenaTransform = transform.parent;
+        }
+
+            allTargets.AddRange(arenaTransform.GetComponentsInChildren<IInteractable>());
     }
 
-    allTargets.AddRange(arenaTransform.GetComponentsInChildren<IInteractable>());
-}
-
-public override void OnEpisodeBegin()
-{
-    // Reset przez Rigidbody2D
-    if (rb != null)
+    public override void OnEpisodeBegin()
     {
-        rb.position = startPosition;
-        rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-    }
-    
-    score = 0;
+        transform.localPosition = startPosition;
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+        score = 0;
 
-    foreach (var target in allTargets)
-    {
-        (target as Harvesting)?.ResetState();
-        (target as Chest)?.ResetState();
+        foreach (var target in allTargets)
+        {
+            (target as Harvesting)?.ResetState();
+            (target as Chest)?.ResetState();
+        }
     }
-}
 
 public override void CollectObservations(VectorSensor sensor)
 {
-    // Stan wlasny agenta (5 wymiarow)
-    sensor.AddObservation(transform.localPosition / 25f);    // pozycja (2D)
-    sensor.AddObservation(rb.linearVelocity / moveSpeed);    // predkosc (2D)
-    sensor.AddObservation(score / 30f);                      // wynik (1D)
+    // Obserwacje własne
+    sensor.AddObservation(transform.localPosition / 25f); // pozycja znormalizowana (2 floats)
+    sensor.AddObservation(rb.linearVelocity / moveSpeed); // prędkość znormalizowana (2 floats)
+    sensor.AddObservation(score / 30f); // wynik znormalizowany (1 float)
 
-    // Stan przeciwnika (3 wymiary)
+    // Obserwacje przeciwnika
     if (opponent != null)
     {
-        sensor.AddObservation(opponent.transform.localPosition / 25f);
-        sensor.AddObservation(opponent.GetScore() / 30f);
+        sensor.AddObservation(opponent.transform.localPosition / 25f); // (2 floats)
+        sensor.AddObservation(opponent.GetScore() / 30f); // (1 float)
     }
     else
     {
-        sensor.AddObservation(Vector3.zero);
-        sensor.AddObservation(0f);
+        sensor.AddObservation(Vector3.zero); // (2 floats)
+        sensor.AddObservation(0f); // (1 float)
     }
 
-    // Wszystkie zasoby na arenie (13 x 5 = 65 wymiarow)
     foreach (var target in allTargets)
     {
         if (target != null)
         {
             var targetMono = target as MonoBehaviour;
             
-            // Pozycja wzgledna zasobu
-            Vector3 relativePos = (targetMono.transform.localPosition 
-                                   - transform.localPosition) / 25f;
-            sensor.AddObservation(relativePos);  // 3 floats
+            // Względna pozycja celu
+            Vector3 relativePos = (targetMono.transform.localPosition - transform.localPosition) / 25f;
+            sensor.AddObservation(relativePos); // (3 floats)
             
-            // Status dostepnosci (0 = zebrane, 1 = dostepne)
-            sensor.AddObservation(target.CanInteract() ? 1f : 0f);
+            // Status dostępności
+            sensor.AddObservation(target.CanInteract() ? 1f : 0f); // (1 float)
             
-            // Typ zasobu (0 = drzewo, 1 = skrzynia)
-            sensor.AddObservation(target is Chest ? 1f : 0f);
+            // Typ zasobu
+            if (target is Chest) 
+                sensor.AddObservation(1f); // skrzynia (1 float)
+            else 
+                sensor.AddObservation(0f); // drzewo (1 float)
         }
     }
 }
-// Calkowity rozmiar: 5 + 3 + 65 = 73 wymiary
 
 
 public override void OnActionReceived(ActionBuffers actions)
@@ -123,7 +113,6 @@ public override void OnActionReceived(ActionBuffers actions)
         EndEpisodeByWinner();
     }
 }
-
     
     public int GetScore()
     {
@@ -131,7 +120,7 @@ public override void OnActionReceived(ActionBuffers actions)
     }
 
     private void TryInteractWithClosestTarget()
-    {
+{
     IInteractable closestTarget = FindClosestAvailableTarget();
     if (closestTarget == null) return;
     
@@ -181,7 +170,7 @@ private void EndEpisodeByWinner()
         }
         else if (scoreDiff < 0)
         {
-            SetReward(losePenalty + scoreDiff * 0.5f);
+            AddReward(losePenalty + scoreDiff * 0.5f);
         }
         else 
         {
@@ -193,7 +182,7 @@ private void EndEpisodeByWinner()
             else
             {
                 // Mniejsza kara za remis z punktami
-                SetReward(losePenalty/2.0f);
+                AddReward(losePenalty/2.0f);
             }
         }
     }
@@ -231,4 +220,11 @@ private void EndEpisodeByWinner()
         }
     }
     
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var continuousActions = actionsOut.ContinuousActions;
+        continuousActions[0] = Input.GetAxisRaw("Horizontal");
+        continuousActions[1] = Input.GetAxisRaw("Vertical");
+        actionsOut.DiscreteActions.Array[0] = Input.GetKey(KeyCode.E) ? 1 : 0;
+    }
 }

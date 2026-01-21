@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6444843182303375702}
   - component: {fileID: 2151721889586812595}
   - component: {fileID: 6383991007736330107}
-  - component: {fileID: 1032723235639653369}
   - component: {fileID: 2279830726042090767}
   m_Layer: 0
   m_Name: Chest
@@ -79,9 +78,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2053327545
-  m_SortingLayer: 3
+  m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1772380996, guid: 2eec471e6c339614bb5c5bdd4b3d9aa9, type: 3}
+  m_Sprite: {fileID: 358093264, guid: 472e950fbe2fc974d8b2faa96acaad4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -172,31 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1927f94a4f1dd3140a3557bea4f5ad93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPhysicalFruit: 1
-  cherryPrefab: {fileID: 4362720838170556479, guid: 386f18c60d1e71d4ba02b8f9fd0ab815, type: 3}
-  amountOfFruit: 15
---- !u!114 &1032723235639653369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6078885605542647342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  lightIntensity: 1
-  ambientLight: 0.5
-  fadeDistance: 0.3
-  lightAngle: 90
-  lightAngleRange: 180
-  useGlobalLight: 1
-  worldLightScript: {fileID: 0}
-  baseAmbientLight: 0.7
-  debugMode: 0
 --- !u!114 &2279830726042090767
 MonoBehaviour:
   m_ObjectHideFlags: 0

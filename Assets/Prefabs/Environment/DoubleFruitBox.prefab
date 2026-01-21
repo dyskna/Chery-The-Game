@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6732147876586897757}
   - component: {fileID: 7437171292552264741}
-  - component: {fileID: 8515936467394270941}
   - component: {fileID: 6663091866590334232}
   m_Layer: 0
   m_Name: DoubleFruitBox
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -695690775
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -7885879002698242397, guid: fca739da3c27a204783f0a90fd98333a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,25 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &8515936467394270941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7820932268236679167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8873e2047413de847b5f73b3fefe79c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  lightIntensity: 1
-  ambientLight: 0.5
-  fadeDistance: 0.3
-  debugMode: 0
-  lightAngle: 90
-  lightAngleRange: 180
 --- !u!114 &6663091866590334232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +145,7 @@ MonoBehaviour:
     m_TrimEdge: 0.008
     m_FlipX: 0
     m_FlipY: 0
-    m_InitialTrim: 0.008
+    m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.008
   m_PreviousEdgeProcessing: 1
