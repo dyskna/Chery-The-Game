@@ -33,9 +33,13 @@ Agent Implementation: 73-dimensional observation space, 2 continuous actions, co
 The arena:
 <img width="955" height="535" alt="image" src="https://github.com/user-attachments/assets/1ef8dfd7-ee3e-49ba-864b-9b473d9ca7fb" />
 
-The model after 1.6mln steps:
+The model after 1.7mln steps:
 
-https://github.com/user-attachments/assets/dc0e15e1-acda-41ae-a15c-431ecaf50a07
+
+
+https://github.com/user-attachments/assets/c5be4490-d605-4f41-8106-d553bc888314
+
+
 
 
 
